@@ -323,8 +323,15 @@ def main():
         print("\nNo labgramm campaigns found!")
         return
 
-    campaign_ids = [c["id"] for c in labgramm_campaigns]
-    print(f"\nAnalyzing {len(campaign_ids)} campaigns: {campaign_ids}")
+    # Exclude traffic campaigns — only analyze messaging/sales campaigns
+    sales_campaigns = [c for c in labgramm_campaigns if "traffic" not in c["name"].lower()]
+    traffic_campaigns = [c for c in labgramm_campaigns if "traffic" in c["name"].lower()]
+    print(f"\nExcluding {len(traffic_campaigns)} traffic campaigns:")
+    for c in traffic_campaigns:
+        print(f"  ⛔ {c['name']}")
+    print(f"\nAnalyzing {len(sales_campaigns)} SALES/MESSAGING campaigns only.")
+
+    campaign_ids = [c["id"] for c in sales_campaigns]
 
     period_results = {}
     for period_name, (date_start, date_stop) in PERIODS.items():
@@ -345,6 +352,28 @@ def main():
     for period_name in ["march", "april"]:
         date_start, date_stop = PERIODS[period_name]
         fetch_daily_breakdown(campaign_ids, date_start, date_stop, period_name)
+
+    # Debug: show ALL action_types returned by Meta for March (to find Purchase label type)
+    print(f"\n{'='*60}")
+    print("DEBUG: ALL ACTION TYPES FROM META (March, sales campaigns only)")
+    print(f"{'='*60}")
+    sales_ids = campaign_ids
+    debug_params = {
+        "fields": "campaign_name,actions,action_values",
+        "time_range": json.dumps({"since": "2026-03-01", "until": "2026-03-31"}),
+        "level": "campaign",
+        "filtering": json.dumps([{"field": "campaign.id", "operator": "IN", "value": sales_ids}]),
+        "limit": 10,
+    }
+    debug_data = get(f"{AD_ACCOUNT}/insights", debug_params)
+    all_action_types = set()
+    for row in debug_data.get("data", []):
+        for a in row.get("actions", []):
+            all_action_types.add(a["action_type"])
+        for a in row.get("action_values", []):
+            all_action_types.add(f"value:{a['action_type']}")
+    for at in sorted(all_action_types):
+        print(f"  {at}")
 
     # Summary comparison
     print(f"\n{'='*60}")
