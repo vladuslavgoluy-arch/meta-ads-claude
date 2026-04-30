@@ -44,7 +44,10 @@ def get(path, params=None):
     if params:
         p.update(params)
     r = requests.get(f"{BASE_URL}/{path}", params=p, timeout=30)
-    r.raise_for_status()
+    if not r.ok:
+        print(f"\n❌ API Error {r.status_code}:")
+        print(r.text)
+        r.raise_for_status()
     return r.json()
 
 
