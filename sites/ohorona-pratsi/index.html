@@ -5,24 +5,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@600;700;800&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: сторінка як «комплект документів» — шапка-реєстр, пакети як опис справи, моноширинні номери документів; акцент — зелений колір евакуаційних знаків */
+/* Layout: сторінка як «комплект документів» — шапка-реєстр, пакети як опис справи, моноширинні номери документів; три варіанти палітри (data-palette), іконки й ілюстрації — inline SVG на токенах */
 :root{
-  --paper:#F4F6F1; --surface:#FFFFFF; --ink:#16231B; --muted:#56645B; --line:#D7E0D8;
-  --green:#1D5C3E; --on-green:#FFFFFF; --green-soft:#E2EEE5; --signal:#94580A;
-  --amber:#F0A532; --on-amber:#2B1A02;
+  --paper:#F3F6FA; --surface:#FFFFFF; --ink:#142033; --muted:#536176; --line:#D8E0EA; --brand:#1F4F8F; --on-brand:#FFFFFF; --brand-soft:#E3ECF7; --accent:#F08A24; --on-accent:#2A1500; --signal:#A3500B;
   --display:"Fira Sans Extra Condensed","Arial Narrow",system-ui,sans-serif;
   --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
-  --wrap:1120px; --r:6px;
+  --wrap:1120px; --r:8px;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0F1712; --surface:#16211A; --ink:#E5EDE7; --muted:#9FB0A5; --line:#29382E;
-  --green:#5DBB86; --on-green:#04140B; --green-soft:#16301F; --signal:#F2B54A;
-  --amber:#F2B54A; --on-amber:#2B1A02; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0F1712; --surface:#16211A; --ink:#E5EDE7; --muted:#9FB0A5; --line:#29382E;
-  --green:#5DBB86; --on-green:#04140B; --green-soft:#16301F; --signal:#F2B54A;
-  --amber:#F2B54A; --on-amber:#2B1A02; color-scheme:dark}
+:root[data-palette="b"]{ --paper:#F2F8F3; --surface:#FFFFFF; --ink:#12241A; --muted:#50655A; --line:#D3E4D8; --brand:#176B3E; --on-brand:#FFFFFF; --brand-soft:#DDF1E4; --accent:#FFC233; --on-accent:#2B2000; --signal:#855700; }
+:root[data-palette="c"]{ --paper:#F7F6F3; --surface:#FFFFFF; --ink:#1E2226; --muted:#5C6269; --line:#E2DED8; --brand:#C2410C; --on-brand:#FFFFFF; --brand-soft:#FBE8DC; --accent:#FFB020; --on-accent:#2A1A00; --signal:#A04508; }
+@media (prefers-color-scheme: dark){
+:root:not([data-theme="light"]){ --paper:#0D131C; --surface:#151D29; --ink:#E6ECF4; --muted:#9DAABB; --line:#263345; --brand:#74A7EA; --on-brand:#07121F; --brand-soft:#16293F; --accent:#F5A04A; --on-accent:#2A1500; --signal:#F5A04A; color-scheme:dark}
+:root[data-palette="b"]:not([data-theme="light"]){ --paper:#0D1711; --surface:#14211A; --ink:#E3EEE6; --muted:#9CB2A4; --line:#27392E; --brand:#4CC57F; --on-brand:#03150A; --brand-soft:#133220; --accent:#FFC94D; --on-accent:#2B2000; --signal:#FFC94D; color-scheme:dark}
+:root[data-palette="c"]:not([data-theme="light"]){ --paper:#131416; --surface:#1C1E21; --ink:#ECECEA; --muted:#A7AAAE; --line:#303338; --brand:#FF8A4C; --on-brand:#1F0A00; --brand-soft:#3A2318; --accent:#FFC04D; --on-accent:#2A1A00; --signal:#FFB26B; color-scheme:dark}
+}
+:root[data-theme="dark"]{ --paper:#0D131C; --surface:#151D29; --ink:#E6ECF4; --muted:#9DAABB; --line:#263345; --brand:#74A7EA; --on-brand:#07121F; --brand-soft:#16293F; --accent:#F5A04A; --on-accent:#2A1500; --signal:#F5A04A; color-scheme:dark}
+:root[data-palette="b"][data-theme="dark"]{ --paper:#0D1711; --surface:#14211A; --ink:#E3EEE6; --muted:#9CB2A4; --line:#27392E; --brand:#4CC57F; --on-brand:#03150A; --brand-soft:#133220; --accent:#FFC94D; --on-accent:#2B2000; --signal:#FFC94D; color-scheme:dark}
+:root[data-palette="c"][data-theme="dark"]{ --paper:#131416; --surface:#1C1E21; --ink:#ECECEA; --muted:#A7AAAE; --line:#303338; --brand:#FF8A4C; --on-brand:#1F0A00; --brand-soft:#3A2318; --accent:#FFC04D; --on-accent:#2A1A00; --signal:#FFB26B; color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,7 +30,7 @@ html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:3px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:3px}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;text-wrap:balance;margin:0;letter-spacing:.005em}
 h2{font-size:clamp(2rem,4.2vw,2.9rem)}
@@ -42,11 +42,12 @@ section{padding-block:clamp(56px,8vw,96px)}
 .sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:760px}
 
 /* Header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-top:3px solid var(--amber);border-bottom:1px solid var(--line)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top::before{content:"";display:block;height:5px;background:repeating-linear-gradient(-45deg,var(--accent) 0 10px,var(--ink) 10px 20px)}
 .top .wrap{display:flex;align-items:center;gap:20px;min-height:64px;padding-block:8px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.25rem;line-height:1}
 .brand small{display:block;font:500 .7rem/1.2 var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-top:3px}
-.sign{width:34px;height:34px;flex:none;border-radius:4px;background:var(--green);display:grid;place-items:center}
+.sign{width:34px;height:34px;flex:none;border-radius:4px;background:var(--brand);display:grid;place-items:center}
 .sign svg{width:22px;height:22px}
 .nav{display:flex;gap:22px;margin-left:auto;font-size:.95rem}
 .nav a{text-decoration:none;color:var(--muted)}
@@ -56,18 +57,18 @@ section{padding-block:clamp(56px,8vw,96px)}
 @media (max-width:420px){.top-phone{font-size:.82rem}.brand small{display:none}}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:var(--r);font:600 1rem var(--body);text-decoration:none;border:1.5px solid var(--green);cursor:pointer}
-.btn-primary{background:var(--green);color:var(--on-green)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:var(--r);font:600 1rem var(--body);text-decoration:none;border:1.5px solid var(--brand);cursor:pointer}
+.btn-primary{background:var(--brand);color:var(--on-brand)}
 .btn-primary:hover{filter:brightness(1.08)}
 .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn-ghost:hover{border-color:var(--green)}
+.btn-ghost:hover{border-color:var(--brand)}
 
 /* Hero */
 .hero{padding-block:clamp(40px,6vw,80px) clamp(48px,7vw,88px)}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
 .hero-copy{display:grid;gap:22px;min-width:0}
 .hero h1{font-size:clamp(2.7rem,6.4vw,4.6rem);font-weight:800}
-.hero h1 em{font-style:normal;color:var(--green)}
+.hero h1 em{font-style:normal;color:var(--brand)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
 .facts{display:flex;flex-wrap:wrap;gap:10px 28px;padding-top:8px;border-top:1px solid var(--line);margin-top:6px}
 .facts div{display:grid;gap:2px;padding-top:14px}
@@ -75,7 +76,7 @@ section{padding-block:clamp(56px,8vw,96px)}
 .facts span{font-size:.88rem;color:var(--muted)}
 
 /* Register card */
-.register{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px -28px rgba(22,35,27,.35);min-width:0}
+.register{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px -28px rgba(15,25,40,.28);min-width:0}
 .register-head{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
 .register-head h3{font-size:1.2rem}
 .register ol{list-style:none;margin:0;padding:6px 20px 10px;counter-reset:d}
@@ -83,9 +84,9 @@ section{padding-block:clamp(56px,8vw,96px)}
 .register li:last-child{border-bottom:0}
 .register li::before{content:counter(d,decimal-leading-zero);font:500 .78rem var(--mono);color:var(--muted)}
 .qty{font:500 .82rem var(--mono);color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
-.stamp{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;background:var(--green-soft);border-top:1px solid var(--line);border-radius:0 0 var(--r) var(--r);font:500 .78rem/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase}
-.stamp strong{color:var(--green)}
-.stamp{box-shadow:inset 3px 0 0 var(--amber)}
+.stamp{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;background:var(--brand-soft);border-top:1px solid var(--line);border-radius:0 0 var(--r) var(--r);font:500 .78rem/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.stamp strong{color:var(--brand)}
+.stamp{box-shadow:inset 3px 0 0 var(--accent)}
 @media (max-width:880px){.hero .wrap{grid-template-columns:1fr}}
 
 /* When */
@@ -94,7 +95,7 @@ section{padding-block:clamp(56px,8vw,96px)}
 .when article{background:var(--surface);padding:24px;display:grid;gap:10px;align-content:start}
 .when h3{font-size:1.3rem}
 .when p{color:var(--muted);font-size:.95rem}
-.tag{justify-self:start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--green-soft);color:var(--green)}
+.tag{justify-self:start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--brand-soft);color:var(--brand)}
 .tag.warn{background:transparent;color:var(--signal);border:1px solid var(--signal)}
 @media (max-width:880px){.when{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.when{grid-template-columns:1fr}}
@@ -102,17 +103,36 @@ section{padding-block:clamp(56px,8vw,96px)}
 /* Packages */
 .packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
 .pack{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.pack.main{border:2px solid var(--green)}
+.pack.main{border:2px solid var(--brand)}
 .pack-for{font-size:.92rem;color:var(--muted)}
 .price{font:800 2.5rem/1 var(--display);font-variant-numeric:tabular-nums}
 .price small{font:500 .9rem var(--body);color:var(--muted)}
 .pack ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.94rem}
 .pack li{display:grid;grid-template-columns:18px 1fr;gap:10px}
-.pack li::before{content:"";width:12px;height:12px;margin-top:6px;border:2px solid var(--green);border-radius:2px;background:linear-gradient(var(--green),var(--green)) center/6px 6px no-repeat}
+.pack li::before{content:"";width:12px;height:12px;margin-top:6px;border:2px solid var(--brand);border-radius:2px;background:linear-gradient(var(--brand),var(--brand)) center/6px 6px no-repeat}
 .pack .btn{margin-top:auto}
-.pack-badge{align-self:flex-start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--amber);color:var(--on-amber);padding:4px 9px;border-radius:3px}
+.pack-badge{align-self:flex-start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);padding:4px 9px;border-radius:3px}
 .note{margin-top:20px;font-size:.9rem;color:var(--muted)}
 @media (max-width:920px){.packs{grid-template-columns:1fr}}
+
+/* Graphics */
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic-tile{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);flex:none}
+.ic-tile.warn{background:var(--accent);color:var(--on-accent)}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hero-side{display:grid;gap:16px;min-width:0}
+.hero-art{border-radius:var(--r);background-color:var(--brand-soft);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px;overflow:hidden;border:1px solid var(--line)}
+.hero-art svg{display:block;width:100%;height:auto}
+.ppe-icons{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ppe-icons li{display:grid;justify-items:center;gap:8px;text-align:center;padding:14px 8px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);font-size:.85rem}
+.ppe-icons .ic{width:34px;height:34px;color:var(--brand)}
+.steps .ic-tile{width:42px;height:42px}
+.palette{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:8px;padding:8px 10px 8px 14px;background:var(--surface);border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 30px -12px rgba(0,0,0,.35);font:500 .75rem var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.palette button{width:30px;height:30px;border-radius:50%;border:2px solid var(--surface);outline:1px solid var(--line);cursor:pointer;padding:0}
+.palette button[aria-pressed="true"]{outline:2px solid var(--ink)}
+.palette .pa{background:linear-gradient(135deg,#1F4F8F 55%,#F08A24 55%)}
+.palette .pb{background:linear-gradient(135deg,#176B3E 55%,#FFC233 55%)}
+.palette .pc{background:linear-gradient(135deg,#C2410C 55%,#FFB020 55%)}
 
 /* Price list */
 .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
@@ -133,7 +153,7 @@ td.unit{color:var(--muted);white-space:nowrap}
 
 /* Cases */
 .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.case{border-top:2px solid var(--green);padding-top:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.case{border-top:2px solid var(--brand);padding-top:18px;display:grid;gap:12px;align-content:start;min-width:0}
 .case dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.93rem}
 .case dt{font:500 .76rem/1.9 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .case dd{margin:0}
@@ -151,7 +171,7 @@ details{border-bottom:1px solid var(--line)}
 details:first-of-type{border-top:1px solid var(--line)}
 summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;font-weight:600;position:relative}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 1.6rem var(--mono);color:var(--green)}
+summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 1.6rem var(--mono);color:var(--brand)}
 details[open] summary::after{content:"−"}
 details p{padding:0 0 18px;color:var(--muted);max-width:62ch}
 @media (max-width:880px){.split{grid-template-columns:1fr}}
@@ -171,7 +191,7 @@ details p{padding:0 0 18px;color:var(--muted);max-width:62ch}
 .phone-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .phone-big{font:700 clamp(1.7rem,3.6vw,2.3rem)/1 var(--display);user-select:all;font-variant-numeric:tabular-nums}
 .copy{font:500 .8rem var(--mono);padding:7px 11px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
-.need{border-left:3px solid var(--amber);padding-left:16px;display:grid;gap:6px;font-size:.94rem}
+.need{border-left:3px solid var(--accent);padding-left:16px;display:grid;gap:6px;font-size:.94rem}
 .need ul{margin:0;padding-left:18px;color:var(--muted)}
 form{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{display:grid;gap:6px;min-width:0}
@@ -179,11 +199,11 @@ form{background:var(--surface);border:1px solid var(--line);border-radius:var(--
 label{font-size:.88rem;font-weight:500}
 input,select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
 textarea{min-height:96px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:2px solid var(--green);outline-offset:0;border-color:var(--green)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:0;border-color:var(--brand)}
 .err{font-size:.82rem;color:var(--signal);min-height:1em}
 .form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 .form-foot p{font-size:.84rem;color:var(--muted);flex:1 1 220px}
-.form-status{grid-column:1/-1;padding:14px 16px;border-radius:4px;background:var(--green-soft);font-size:.95rem}
+.form-status{grid-column:1/-1;padding:14px 16px;border-radius:4px;background:var(--brand-soft);font-size:.95rem}
 @media (max-width:880px){.contact .wrap{grid-template-columns:1fr}}
 @media (max-width:560px){form{grid-template-columns:1fr}}
 
@@ -191,10 +211,11 @@ footer{border-top:1px solid var(--line);padding-block:28px;font-size:.88rem;colo
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 </style>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M19 8v6M16 11h6"/></symbol><symbol id="i-inspect" viewBox="0 0 24 24"><rect x="4" y="3.5" width="12" height="17" rx="2"/><path d="M7.5 8h5M7.5 11.5h3"/><circle cx="16.5" cy="15.5" r="3.5"/><path d="m19 18 2.5 2.5"/></symbol><symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21a6 6 0 0 0 6-6c0-4-3-6-4-10-1.5 2-2 3.5-2 5-1-1-1.5-2-1.5-3C8 9 6 11.5 6 15a6 6 0 0 0 6 6Z"/><path d="M12 21a2.5 2.5 0 0 1-2.5-2.5c0-1.8 1.5-2.5 2.5-4.5 1 2 2.5 2.7 2.5 4.5A2.5 2.5 0 0 1 12 21Z"/></symbol><symbol id="i-shelves" viewBox="0 0 24 24"><path d="M4 3v18M20 3v18M4 9h16M4 15h16M4 21h16"/><path d="M7 9V5.5h4V9M12.5 15v-3.5h5V15M7.5 21v-3.5h3.5V21"/></symbol><symbol id="i-team" viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14c.6-.3 1.3-.5 2-.5 2.3 0 4.2 1.5 4.8 4.5"/></symbol><symbol id="i-siren" viewBox="0 0 24 24"><path d="M6.5 18v-5a5.5 5.5 0 0 1 11 0v5M4 18h16v3H4zM12 2.5v2M4 6l1.5 1.5M20 6l-1.5 1.5M12 10.5v4"/></symbol><symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l5 3v-3l5 3v-3l5 3V4h3v17Z"/><path d="M7 17h2M11.5 17h2M16 17h2"/></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6h11v10h-11zM13.5 9.5h4l3 3.5V16h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol><symbol id="i-cone" viewBox="0 0 24 24"><path d="M10 3h4l4.5 15h-13ZM8.2 9h7.6M6.8 13.5h10.4M3 21h18"/></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8Z"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8 7.5 9.5 4.3-1.5 7.5-5 7.5-9.5V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 12.5h18"/></symbol><symbol id="i-helmet" viewBox="0 0 24 24"><path d="M4.5 16a7.5 7.5 0 0 1 15 0"/><path d="M2.5 16h19v2.5h-19zM10 9V5.2h4V9"/></symbol><symbol id="i-goggles" viewBox="0 0 24 24"><path d="M2.5 10.5C2.5 9 3.5 8 5 8h14c1.5 0 2.5 1 2.5 2.5v2c0 2-1.5 3.5-3.5 3.5h-2.5l-1.8-2.2a1 1 0 0 0-1.6 0L10.3 16H6c-2 0-3.5-1.5-3.5-3.5Z"/></symbol><symbol id="i-glove" viewBox="0 0 24 24"><path d="M7 21v-4l-2.5-4a1.5 1.5 0 0 1 2.6-1.5L8.5 13V5a1.5 1.5 0 0 1 3 0v5V4a1.5 1.5 0 0 1 3 0v6V5.5a1.5 1.5 0 0 1 3 0V15c0 3-1.5 4-2.5 4.5V21M7 18h8.5"/></symbol><symbol id="i-vest" viewBox="0 0 24 24"><path d="M8 3 4 6v15h6v-8.5L12 10l2 2.5V21h6V6l-4-3-1.5 4h-5Z"/><path d="M4 14.5h6M14 14.5h6"/></symbol><symbol id="i-boot" viewBox="0 0 24 24"><path d="M5 3h6v8l6.5 2.5c2 .8 3.5 2.2 3.5 4.5v1H5ZM5 21h16M5 7h6"/></symbol><symbol id="i-mask" viewBox="0 0 24 24"><path d="M5 9c2-2 4.5-3 7-3s5 1 7 3v4c0 3.5-3 6-7 6s-7-2.5-7-6ZM2.5 9H5M19 9h2.5"/><circle cx="12" cy="13" r="2.5"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4ZM8 9.5h8M8 12.5h5"/></symbol><symbol id="i-checklist" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5V5h6V3.5M8.5 10l1.2 1.2 2-2M13.5 10.5h2.5M8.5 15l1.2 1.2 2-2M13.5 15.5h2.5"/></symbol><symbol id="i-sign" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8ZM14 3v5h5M8.5 17c1.2-2 2-2 2.5-.5s1 1.5 2 0 1.8-1 2.5 0"/></symbol><symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8ZM14 3v5h5M8.5 12.5h7M8.5 16h5"/></symbol><symbol id="i-done" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8 12.3 2.8 2.7L16 9.5"/></symbol></svg>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="На початок сторінки">
-      <span class="sign" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h8v16H4z" stroke="var(--on-green)" stroke-width="2"/><path d="M13 12h7m-3-3 3 3-3 3" stroke="var(--on-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="sign" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h8v16H4z" stroke="var(--on-brand)" stroke-width="2"/><path d="M13 12h7m-3-3 3 3-3 3" stroke="var(--on-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <span>Охорона праці<small>Олександр Голій · Луцьк</small></span>
     </a>
     <nav class="nav" aria-label="Розділи">
@@ -222,6 +243,37 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </div>
       </div>
 
+      <div class="hero-side">
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 480 230">
+            <rect x="0" y="206" width="480" height="24" fill="var(--ink)" opacity=".9"/>
+            <rect x="0" y="206" width="480" height="24" fill="url(#hz)"/>
+            <defs><pattern id="hz" width="28" height="24" patternUnits="userSpaceOnUse" patternTransform="skewX(-40)"><rect width="14" height="24" fill="var(--accent)"/></pattern></defs>
+            <g transform="translate(150 22)">
+              <rect width="150" height="176" rx="12" fill="var(--surface)" stroke="var(--ink)" stroke-opacity=".18" stroke-width="2"/>
+              <rect x="45" y="-10" width="60" height="24" rx="7" fill="var(--brand)"/>
+              <g stroke-linecap="round" stroke-width="7">
+                <path d="M58 52h68M58 90h52M58 128h60" stroke="var(--line)"/>
+              </g>
+              <g fill="none" stroke="var(--brand)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="20" y="40" width="24" height="24" rx="5" stroke-width="3"/><path d="m25 52 5 5 9-10"/>
+                <rect x="20" y="78" width="24" height="24" rx="5" stroke-width="3"/><path d="m25 90 5 5 9-10"/>
+                <rect x="20" y="116" width="24" height="24" rx="5" stroke-width="3"/>
+              </g>
+            </g>
+            <g transform="translate(316 34)">
+              <path d="M60 0 120 22v50c0 44-27 72-60 86C27 144 0 116 0 72V22Z" fill="var(--brand)"/>
+              <path d="M60 14 106 31v41c0 35-20 58-46 70Z" fill="var(--on-brand)" opacity=".12"/>
+              <path d="m34 78 18 18 36-40" fill="none" stroke="var(--on-brand)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g transform="translate(26 108)">
+              <path d="M14 82a70 70 0 0 1 140 0Z" fill="var(--accent)"/>
+              <path d="M66 14h36v58H66Z" fill="var(--on-accent)" opacity=".14"/>
+              <path d="M40 30a62 62 0 0 0-14 40" fill="none" stroke="var(--surface)" stroke-opacity=".55" stroke-width="7" stroke-linecap="round"/>
+              <rect x="-6" y="78" width="180" height="18" rx="9" fill="var(--accent)" stroke="var(--on-accent)" stroke-opacity=".25" stroke-width="2"/>
+            </g>
+          </svg>
+        </div>
       <aside class="register" aria-label="Приклад складу комплекту">
         <div class="register-head">
           <h3>Опис комплекту</h3>
@@ -240,6 +292,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </ol>
         <div class="stamp"><span>Реальний склад робіт</span><strong>Строк до 1 місяця</strong></div>
       </aside>
+      </div>
     </div>
   </section>
 
@@ -250,12 +303,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <h2 id="when-h">Документи потрібні раніше, ніж про них питає інспектор</h2>
       </div>
       <div class="when">
-        <article><span class="tag">Старт</span><h3>Найняли перших працівників</h3><p>Підготуємо мінімальний обов'язковий набір і пояснимо, як вести журнали та проводити інструктажі.</p></article>
-        <article><span class="tag">Перевірка</span><h3>Очікуєте перевірку</h3><p>Зберемо або оновимо комплект, щоб документи відповідали реальним видам робіт і штатному розпису.</p></article>
-        <article><span class="tag warn">Підвищена небезпека</span><h3>Зварювання, фарбування, монтаж</h3><p>Інструкції, програми стажування, наказ про місця вогневих робіт і консультація щодо нарядів-допусків.</p></article>
-        <article><span class="tag">Склад</span><h3>Стелажі і вантажні роботи</h3><p>Карта небезпек і оцінка професійних ризиків, супровід первинного технічного огляду стелажів.</p></article>
-        <article><span class="tag">Підрядники</span><h3>На об'єкті працюють сторонні бригади</h3><p>Положення про взаємодію з підрядними організаціями і безпечне виконання їхніх робіт.</p></article>
-        <article><span class="tag">Воєнний стан</span><h3>Немає інструкції на випадок тривоги</h3><p>Інструкція щодо дій працівників у надзвичайних ситуаціях під час воєнного стану.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-user-plus"/></svg></span><span class="tag">Старт</span></div><h3>Найняли перших працівників</h3><p>Підготуємо мінімальний обов'язковий набір і пояснимо, як вести журнали та проводити інструктажі.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-inspect"/></svg></span><span class="tag">Перевірка</span></div><h3>Очікуєте перевірку</h3><p>Зберемо або оновимо комплект, щоб документи відповідали реальним видам робіт і штатному розпису.</p></article>
+        <article><div class="card-top"><span class="ic-tile warn" aria-hidden="true"><svg class="ic"><use href="#i-flame"/></svg></span><span class="tag warn">Підвищена небезпека</span></div><h3>Зварювання, фарбування, монтаж</h3><p>Інструкції, програми стажування, наказ про місця вогневих робіт і консультація щодо нарядів-допусків.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-shelves"/></svg></span><span class="tag">Склад</span></div><h3>Стелажі і вантажні роботи</h3><p>Карта небезпек і оцінка професійних ризиків, супровід первинного технічного огляду стелажів.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-team"/></svg></span><span class="tag">Підрядники</span></div><h3>На об'єкті працюють сторонні бригади</h3><p>Положення про взаємодію з підрядними організаціями і безпечне виконання їхніх робіт.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-siren"/></svg></span><span class="tag">Воєнний стан</span></div><h3>Немає інструкції на випадок тривоги</h3><p>Інструкція щодо дій працівників у надзвичайних ситуаціях під час воєнного стану.</p></article>
       </div>
     </div>
   </section>
@@ -268,12 +321,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <p class="lead">Кожна галузь має свої ризики, тому і набір документів у кожної свій.</p>
       </div>
       <div class="when">
-        <article><span class="tag">Виробництво</span><h3>Металообробка і фарбування</h3><p>Верстати, гільйотини, зварювання і різання, порошкове фарбування, печі полімеризації, компресори.</p></article>
-        <article><span class="tag">Склади</span><h3>Склади і логістика</h3><p>Стелажі, рокли, стрем'янки, навантажувачі. Акти огляду стелажів, журнали драбин, норми ЗІЗ для комірників.</p></article>
-        <article><span class="tag warn">Підвищена небезпека</span><h3>Дорожнє будівництво і спецтехніка</h3><p>Екскаватори, грейдери, котки, укладання асфальту. ПВР, наряди-допуски, роботи біля проїжджої частини.</p></article>
-        <article><span class="tag">Монтаж</span><h3>Монтаж обладнання в замовника</h3><p>Роботи на висоті та вогневі роботи на чужій території, акти-допуски, положення про підрядників.</p></article>
-        <article><span class="tag">Охорона</span><h3>Охорона і чергування</h3><p>Нічні зміни, обходи території, генератори, дії під час повітряної тривоги.</p></article>
-        <article><span class="tag">Послуги</span><h3>Офіси, салони краси, ФОП</h3><p>Робота з ПК і побутовою технікою, хімія для процедур, мінімальний пакет для малого бізнесу.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-factory"/></svg></span><span class="tag">Виробництво</span></div><h3>Металообробка і фарбування</h3><p>Верстати, гільйотини, зварювання і різання, порошкове фарбування, печі полімеризації, компресори.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-truck"/></svg></span><span class="tag">Склади</span></div><h3>Склади і логістика</h3><p>Стелажі, рокли, стрем'янки, навантажувачі. Акти огляду стелажів, журнали драбин, норми ЗІЗ для комірників.</p></article>
+        <article><div class="card-top"><span class="ic-tile warn" aria-hidden="true"><svg class="ic"><use href="#i-cone"/></svg></span><span class="tag warn">Підвищена небезпека</span></div><h3>Дорожнє будівництво і спецтехніка</h3><p>Екскаватори, грейдери, котки, укладання асфальту. ПВР, наряди-допуски, роботи біля проїжджої частини.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-wrench"/></svg></span><span class="tag">Монтаж</span></div><h3>Монтаж обладнання в замовника</h3><p>Роботи на висоті та вогневі роботи на чужій території, акти-допуски, положення про підрядників.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-shield"/></svg></span><span class="tag">Охорона</span></div><h3>Охорона і чергування</h3><p>Нічні зміни, обходи території, генератори, дії під час повітряної тривоги.</p></article>
+        <article><div class="card-top"><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-briefcase"/></svg></span><span class="tag">Послуги</span></div><h3>Офіси, салони краси, ФОП</h3><p>Робота з ПК і побутовою технікою, хімія для процедур, мінімальний пакет для малого бізнесу.</p></article>
       </div>
     </div>
   </section>
@@ -370,6 +423,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <p class="lead">Норми видачі спецодягу та ЗІЗ ми розробляємо самі, тож знаємо, що саме потрібно кожній посаді. За потреби забезпечуємо засобами захисту через наших постачальників: підбираємо, замовляємо і виставляємо один рахунок на все.</p>
         <p class="pack-for">Вартість залежить від переліку і кількості, фіксуємо в рахунку до оплати.</p>
         <div><a class="btn btn-primary" href="#contact" data-pack="Засоби захисту (ЗІЗ)">Підібрати ЗІЗ</a></div>
+        <ul class="ppe-icons"><li><svg class="ic" aria-hidden="true"><use href="#i-helmet"/></svg>Каски</li><li><svg class="ic" aria-hidden="true"><use href="#i-goggles"/></svg>Окуляри</li><li><svg class="ic" aria-hidden="true"><use href="#i-glove"/></svg>Рукавиці</li><li><svg class="ic" aria-hidden="true"><use href="#i-vest"/></svg>Сигнальні жилети</li><li><svg class="ic" aria-hidden="true"><use href="#i-boot"/></svg>Спецвзуття</li><li><svg class="ic" aria-hidden="true"><use href="#i-mask"/></svg>Респіратори</li></ul>
       </div>
       <div class="resp-box">
         <div><b>Підбір</b><span>За нормами видачі і видами робіт: спецодяг і взуття, каски, окуляри, рукавиці, засоби захисту органів дихання, сигнальні жилети</span></div>
@@ -429,11 +483,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <h2 id="how-h">Від заявки до акта, без жодної поїздки</h2>
       </div>
       <ol class="steps">
-        <li><h3>Заявка</h3><p>Розповідаєте про підприємство: кількість працівників, види робіт, обладнання.</p></li>
-        <li><h3>Опитувальник</h3><p>Надсилаємо опитувальник під вашу галузь: обладнання, процеси, хімія, вантажі, роботи на висоті. Додаєте штатний розпис і план приміщень.</p></li>
-        <li><h3>Договір</h3><p>Фіксуємо склад робіт і ціну в рахунку, підписуємо договір КЕП через Вчасно.</p></li>
-        <li><h3>Розробка</h3><p>Готуємо документи під ваші посади і роботи. Консультуємо щодо журналів та інструктажів.</p></li>
-        <li><h3>Акт і оплата</h3><p>Передаємо комплект, підписуємо акт, ви оплачуєте протягом 5 банківських днів.</p></li>
+        <li><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-chat"/></svg></span><h3>Заявка</h3><p>Розповідаєте про підприємство: кількість працівників, види робіт, обладнання.</p></li>
+        <li><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-checklist"/></svg></span><h3>Опитувальник</h3><p>Надсилаємо опитувальник під вашу галузь: обладнання, процеси, хімія, вантажі, роботи на висоті. Додаєте штатний розпис і план приміщень.</p></li>
+        <li><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-sign"/></svg></span><h3>Договір</h3><p>Фіксуємо склад робіт і ціну в рахунку, підписуємо договір КЕП через Вчасно.</p></li>
+        <li><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-doc"/></svg></span><h3>Розробка</h3><p>Готуємо документи під ваші посади і роботи. Консультуємо щодо журналів та інструктажів.</p></li>
+        <li><span class="ic-tile" aria-hidden="true"><svg class="ic"><use href="#i-done"/></svg></span><h3>Акт і оплата</h3><p>Передаємо комплект, підписуємо акт, ви оплачуєте протягом 5 банківських днів.</p></li>
       </ol>
     </div>
   </section>
@@ -543,7 +597,28 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   </div>
 </footer>
 
+<div class="palette" role="group" aria-label="Варіант кольорів">Колір
+  <button class="pa" type="button" data-p="a" aria-label="Синій з помаранчевим"></button>
+  <button class="pb" type="button" data-p="b" aria-label="Зелений з жовтим"></button>
+  <button class="pc" type="button" data-p="c" aria-label="Помаранчевий з жовтим"></button>
+</div>
 <script>
+// Перемикач палітри для вибору кольорів. Після вибору — прибрати блок .palette і цей код.
+(() => {
+  const btns = document.querySelectorAll(".palette button");
+  const apply = p => {
+    if (p === "a") delete document.documentElement.dataset.palette; else document.documentElement.dataset.palette = p;
+    btns.forEach(b => b.setAttribute("aria-pressed", b.dataset.p === p));
+  };
+  let saved = "a";
+  try { saved = localStorage.getItem("palette") || "a"; } catch (e) {}
+  apply(saved);
+  btns.forEach(b => b.addEventListener("click", () => {
+    apply(b.dataset.p);
+    try { localStorage.setItem("palette", b.dataset.p); } catch (e) {}
+  }));
+})();
+
 // Адреса прийому заявок (вебхук Telegram-бота, Google Apps Script, CRM). Поки порожня — форма підказує подзвонити.
 const LEAD_ENDPOINT = "";
 
