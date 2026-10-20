@@ -7,19 +7,19 @@
 <style>
 /* Layout: сторінка як «комплект документів» — шапка-реєстр, пакети як опис справи, моноширинні номери документів; акцент — зелений колір евакуаційних знаків */
 :root{
-  --paper:#F4F7F5; --surface:#FFFFFF; --ink:#10201A; --muted:#51625A; --line:#D3DDD7;
-  --green:#0B7A43; --on-green:#FFFFFF; --green-soft:#E2F0E7; --signal:#C98A0B;
+  --paper:#F5F7F4; --surface:#FFFFFF; --ink:#1C2B2A; --muted:#566866; --line:#DAE3DF;
+  --green:#2B7666; --on-green:#FFFFFF; --green-soft:#E4F1EC; --signal:#9E6210;
   --display:"Fira Sans Extra Condensed","Arial Narrow",system-ui,sans-serif;
   --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   --wrap:1120px; --r:6px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0D1512; --surface:#141F1A; --ink:#E4EDE8; --muted:#9AACA3; --line:#26352E;
-  --green:#3DB574; --on-green:#05130C; --green-soft:#12301F; --signal:#E9B444; color-scheme:dark}}
+  --paper:#121A1A; --surface:#1A2424; --ink:#E6EEEC; --muted:#A1B2AF; --line:#2C3A3A;
+  --green:#62BFA9; --on-green:#06201A; --green-soft:#173431; --signal:#E3B25A; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --paper:#0D1512; --surface:#141F1A; --ink:#E4EDE8; --muted:#9AACA3; --line:#26352E;
-  --green:#3DB574; --on-green:#05130C; --green-soft:#12301F; --signal:#E9B444; color-scheme:dark}
+  --paper:#121A1A; --surface:#1A2424; --ink:#E6EEEC; --muted:#A1B2AF; --line:#2C3A3A;
+  --green:#62BFA9; --on-green:#06201A; --green-soft:#173431; --signal:#E3B25A; color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -72,7 +72,7 @@ section{padding-block:clamp(56px,8vw,96px)}
 .facts span{font-size:.88rem;color:var(--muted)}
 
 /* Register card */
-.register{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px -28px rgba(16,32,26,.45);min-width:0}
+.register{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px -28px rgba(28,43,42,.35);min-width:0}
 .register-head{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
 .register-head h3{font-size:1.2rem}
 .register ol{list-style:none;margin:0;padding:6px 20px 10px;counter-reset:d}
@@ -152,6 +152,11 @@ details[open] summary::after{content:"−"}
 details p{padding:0 0 18px;color:var(--muted);max-width:62ch}
 @media (max-width:880px){.split{grid-template-columns:1fr}}
 
+/* Also list */
+.also{margin-top:28px;display:grid;gap:12px}
+.also ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.also li{font-size:.9rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+
 /* Contact */
 .contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,64px)}
 .contact .wrap > *{min-width:0}
@@ -186,7 +191,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <span>Охорона праці<small>Олександр Голій · Луцьк</small></span>
     </a>
     <nav class="nav" aria-label="Розділи">
-      <a href="#packs">Пакети</a><a href="#prices">Ціни</a><a href="#how">Як працюємо</a><a href="#cases">Кейси</a><a href="#faq">Питання</a>
+      <a href="#packs">Пакети</a><a href="#outsource">Аутсорс</a><a href="#prices">Ціни</a><a href="#how">Як працюємо</a><a href="#cases">Кейси</a><a href="#faq">Питання</a>
     </nav>
     <a class="top-phone" href="tel:+380995291401">+38 099 529 14 01</a>
   </div>
@@ -198,7 +203,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div class="hero-copy">
         <p class="eyebrow">Охорона праці · пожежна безпека · цивільний захист</p>
         <h1>Комплект документів з охорони праці <em>під ключ</em></h1>
-        <p class="lead">Накази, інструкції, Положення про СУОП, програми стажування, норми видачі ЗІЗ і план евакуації. Під ваші види робіт і штат. Договір і акти підписуємо через Вчасно, тож працюємо з підприємствами з будь-якої області.</p>
+        <p class="lead">Накази, інструкції, Положення про СУОП, програми стажування, норми видачі ЗІЗ і план евакуації. Під ваші види робіт і штат. Договір і акти підписуємо через Вчасно, тож працюємо з підприємствами з будь-якої області. Або беремо на себе функції служби охорони праці на аутсорсі.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#contact">Отримати розрахунок</a>
           <a class="btn btn-ghost" href="#packs">Пакети і ціни</a>
@@ -248,7 +253,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section id="packs" aria-labelledby="packs-h">
+  <section id="industries" aria-labelledby="ind-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Галузі</p>
+        <h2 id="ind-h">З ким уже працюємо</h2>
+        <p class="lead">Кожна галузь має свої ризики, тому і набір документів у кожної свій.</p>
+      </div>
+      <div class="when">
+        <article><span class="tag">Виробництво</span><h3>Металообробка і фарбування</h3><p>Верстати, гільйотини, зварювання і різання, порошкове фарбування, печі полімеризації, компресори.</p></article>
+        <article><span class="tag">Склади</span><h3>Склади і логістика</h3><p>Стелажі, рокли, стрем'янки, навантажувачі. Акти огляду стелажів, журнали драбин, норми ЗІЗ для комірників.</p></article>
+        <article><span class="tag warn">Підвищена небезпека</span><h3>Дорожнє будівництво і спецтехніка</h3><p>Екскаватори, грейдери, котки, укладання асфальту. ПВР, наряди-допуски, роботи біля проїжджої частини.</p></article>
+        <article><span class="tag">Монтаж</span><h3>Монтаж обладнання в замовника</h3><p>Роботи на висоті та вогневі роботи на чужій території, акти-допуски, положення про підрядників.</p></article>
+        <article><span class="tag">Охорона</span><h3>Охорона і чергування</h3><p>Нічні зміни, обходи території, генератори, дії під час повітряної тривоги.</p></article>
+        <article><span class="tag">Послуги</span><h3>Офіси, салони краси, ФОП</h3><p>Робота з ПК і побутовою технікою, хімія для процедур, мінімальний пакет для малого бізнесу.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="packs" class="band" aria-labelledby="packs-h">
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Пакети</p>
@@ -307,6 +330,31 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
+  <section id="outsource" aria-labelledby="out-h">
+    <div class="wrap split">
+      <div class="resp">
+        <p class="eyebrow">Аутсорс</p>
+        <h2 id="out-h">Служба охорони праці без окремого інженера в штаті</h2>
+        <p class="lead">Для підприємств, де немає власного фахівця з охорони праці. Беремо на себе ці функції за договором і ведемо систему постійно, а не лише видаємо пакет документів.</p>
+        <p class="price">Ціна договірна</p>
+        <p class="pack-for">Щомісячна вартість залежить від штату і видів робіт. Фіксуємо її в договорі після опитувальника.</p>
+        <div><a class="btn btn-primary" href="#contact" data-pack="Аутсорс служби охорони праці">Обговорити аутсорс</a></div>
+      </div>
+      <div class="pack main">
+        <h3>Що входить</h3>
+        <ul>
+          <li>Виконання функцій служби охорони праці за договором</li>
+          <li>Вступні інструктажі для нових працівників</li>
+          <li>Розробка й оновлення інструкцій, наказів і журналів</li>
+          <li>Норми та облік видачі ЗІЗ</li>
+          <li>Організація навчання і перевірки знань</li>
+          <li>Огляд об'єкта та підготовка до державних перевірок</li>
+          <li>Консультації керівника й відповідальних осіб</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="prices" class="band" aria-labelledby="prices-h">
     <div class="wrap">
       <div class="sec-head">
@@ -333,6 +381,19 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           </tbody>
         </table>
       </div>
+      <div class="also">
+        <p class="eyebrow">Також розробляємо · ціна за запитом</p>
+        <ul>
+          <li>Положення про СУОП</li>
+          <li>ПВР і технологічні карти</li>
+          <li>Наряди-допуски на роботи на висоті та вогневі роботи</li>
+          <li>Програми навчання, стажування і тести</li>
+          <li>Положення про допуск підрядників</li>
+          <li>Переліки і направлення на медогляди</li>
+          <li>Інструкції щодо дій під час воєнного стану</li>
+          <li>Акти огляду стелажів, журнали драбин і ЗІЗ</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -344,7 +405,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </div>
       <ol class="steps">
         <li><h3>Заявка</h3><p>Розповідаєте про підприємство: кількість працівників, види робіт, обладнання.</p></li>
-        <li><h3>Вихідні дані</h3><p>Надсилаєте штатний розпис, перелік обладнання і план приміщень для плану евакуації.</p></li>
+        <li><h3>Опитувальник</h3><p>Надсилаємо опитувальник під вашу галузь: обладнання, процеси, хімія, вантажі, роботи на висоті. Додаєте штатний розпис і план приміщень.</p></li>
         <li><h3>Договір</h3><p>Фіксуємо склад робіт і ціну в рахунку, підписуємо договір КЕП через Вчасно.</p></li>
         <li><h3>Розробка</h3><p>Готуємо документи під ваші посади і роботи. Консультуємо щодо журналів та інструктажів.</p></li>
         <li><h3>Акт і оплата</h3><p>Передаємо комплект, підписуємо акт, ви оплачуєте протягом 5 банківських днів.</p></li>
@@ -402,6 +463,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </div>
       </div>
       <div>
+        <details><summary>Це будуть типові документи з інтернету?</summary><p>Ні. Перед розробкою ви заповнюєте опитувальник, і інструкції описують ваше обладнання, ваші процеси та посади. Типовий текст не допоможе на перевірці, а якщо щось станеться, він не захистить керівника.</p></details>
+        <details><summary>Ви працюєте з ФОП і малим бізнесом?</summary><p>Так. Для невеликого штату робимо компактний пакет, без зайвих документів, і підказуємо, які функції керівник може виконувати сам.</p></details>
         <details><summary>Ви працюєте тільки з Луцьком і Волинню?</summary><p>Ні. Договір, рахунок і акт підписуємо КЕП через Вчасно, а вихідні дані отримуємо поштою чи в месенджері. Тому працюємо з підприємствами з будь-якої області.</p></details>
         <details><summary>Чи допомагаєте з навчанням керівників і працівників?</summary><p>Так. Підбираємо навчальний центр і програми під ваші види робіт, оформлюємо заявку і супроводжуємо до отримання посвідчень. Вам не треба самим шукати центр і розбиратися, кого і за якими правилами вчити.</p></details>
         <details><summary>Що потрібно від нас для старту?</summary><p>Штатний розпис, перелік обладнання і види робіт. Для плану евакуації потрібен план приміщень. Якщо дані затримуються, строк зсувається на той самий час.</p></details>
@@ -435,7 +498,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <div class="field"><label for="f-staff">Кількість працівників</label>
           <select id="f-staff" name="staff"><option>до 10</option><option>11–50</option><option>51–150</option><option>понад 150</option></select></div>
         <div class="field full"><label for="f-pack">Що цікавить</label>
-          <select id="f-pack" name="pack"><option>Ще не знаю, допоможіть обрати</option><option>Старт</option><option>Базовий</option><option>Виробництво</option><option>Окремі документи</option><option>Навчання в навчальному центрі</option></select></div>
+          <select id="f-pack" name="pack"><option>Ще не знаю, допоможіть обрати</option><option>Старт</option><option>Базовий</option><option>Виробництво</option><option>Окремі документи</option><option>Навчання в навчальному центрі</option><option>Аутсорс служби охорони праці</option></select></div>
         <div class="field full"><label for="f-msg">Види робіт і обладнання</label><textarea id="f-msg" name="message" placeholder="Наприклад: склад, 2 навантажувачі, стелажі, 15 працівників"></textarea></div>
         <div class="form-foot">
           <button class="btn btn-primary" type="submit">Отримати розрахунок</button>
