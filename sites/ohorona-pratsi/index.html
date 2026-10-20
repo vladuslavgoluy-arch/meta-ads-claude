@@ -155,6 +155,9 @@ summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 1.6rem 
 details[open] summary::after{content:"−"}
 details p{padding:0 0 18px;color:var(--muted);max-width:62ch}
 @media (max-width:880px){.split{grid-template-columns:1fr}}
+#ppe{border-top:1px solid var(--line)}
+#ppe .resp-box{align-self:start}
+@media (max-width:560px){#ppe .resp-box div{grid-template-columns:1fr;gap:4px}}
 
 /* Also list */
 .also{margin-top:28px;display:grid;gap:12px}
@@ -195,7 +198,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <span>Охорона праці<small>Олександр Голій · Луцьк</small></span>
     </a>
     <nav class="nav" aria-label="Розділи">
-      <a href="#packs">Пакети</a><a href="#outsource">Аутсорс</a><a href="#prices">Ціни</a><a href="#how">Як працюємо</a><a href="#cases">Кейси</a><a href="#faq">Питання</a>
+      <a href="#packs">Пакети</a><a href="#outsource">Аутсорс</a><a href="#ppe">ЗІЗ</a><a href="#prices">Ціни</a><a href="#how">Як працюємо</a><a href="#cases">Кейси</a><a href="#faq">Питання</a>
     </nav>
     <a class="top-phone" href="tel:+380995291401">+38 099 529 14 01</a>
   </div>
@@ -359,6 +362,24 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
+  <section id="ppe" aria-labelledby="ppe-h">
+    <div class="wrap split">
+      <div class="resp">
+        <p class="eyebrow">Засоби захисту</p>
+        <h2 id="ppe-h">ЗІЗ під ваші норми видачі</h2>
+        <p class="lead">Норми видачі спецодягу та ЗІЗ ми розробляємо самі, тож знаємо, що саме потрібно кожній посаді. За потреби забезпечуємо засобами захисту через наших постачальників: підбираємо, замовляємо і виставляємо один рахунок на все.</p>
+        <p class="pack-for">Вартість залежить від переліку і кількості, фіксуємо в рахунку до оплати.</p>
+        <div><a class="btn btn-primary" href="#contact" data-pack="Засоби захисту (ЗІЗ)">Підібрати ЗІЗ</a></div>
+      </div>
+      <div class="resp-box">
+        <div><b>Підбір</b><span>За нормами видачі і видами робіт: спецодяг і взуття, каски, окуляри, рукавиці, засоби захисту органів дихання, сигнальні жилети</span></div>
+        <div><b>Замовлення</b><span>У постачальників, з якими працюємо, з урахуванням кількості і розмірів працівників</span></div>
+        <div><b>Рахунок</b><span>Один рахунок на всі засоби захисту замість пошуку і розрахунків з кількома постачальниками</span></div>
+        <div><b>Облік</b><span>Перелік збігається з нормами видачі, тож його легко внести в особові картки обліку ЗІЗ</span></div>
+      </div>
+    </div>
+  </section>
+
   <section id="prices" class="band" aria-labelledby="prices-h">
     <div class="wrap">
       <div class="sec-head">
@@ -502,7 +523,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <div class="field"><label for="f-staff">Кількість працівників</label>
           <select id="f-staff" name="staff"><option>до 10</option><option>11–50</option><option>51–150</option><option>понад 150</option></select></div>
         <div class="field full"><label for="f-pack">Що цікавить</label>
-          <select id="f-pack" name="pack"><option>Ще не знаю, допоможіть обрати</option><option>Старт</option><option>Базовий</option><option>Виробництво</option><option>Окремі документи</option><option>Навчання в навчальному центрі</option><option>Аутсорс служби охорони праці</option></select></div>
+          <select id="f-pack" name="pack"><option>Ще не знаю, допоможіть обрати</option><option>Старт</option><option>Базовий</option><option>Виробництво</option><option>Окремі документи</option><option>Навчання в навчальному центрі</option><option>Аутсорс служби охорони праці</option><option>Засоби захисту (ЗІЗ)</option></select></div>
         <div class="field full"><label for="f-msg">Види робіт і обладнання</label><textarea id="f-msg" name="message" placeholder="Наприклад: склад, 2 навантажувачі, стелажі, 15 працівників"></textarea></div>
         <div class="form-foot">
           <button class="btn btn-primary" type="submit">Отримати розрахунок</button>
