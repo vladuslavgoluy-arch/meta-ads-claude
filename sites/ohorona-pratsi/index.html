@@ -1,0 +1,505 @@
+<title>Охорона праці під ключ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Комплект документів з охорони праці, пожежної безпеки та цивільного захисту під ключ. Луцьк і дистанційно по всій Україні.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@600;700;800&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: сторінка як «комплект документів» — шапка-реєстр, пакети як опис справи, моноширинні номери документів; акцент — зелений колір евакуаційних знаків */
+:root{
+  --paper:#F4F7F5; --surface:#FFFFFF; --ink:#10201A; --muted:#51625A; --line:#D3DDD7;
+  --green:#0B7A43; --on-green:#FFFFFF; --green-soft:#E2F0E7; --signal:#C98A0B;
+  --display:"Fira Sans Extra Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1120px; --r:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D1512; --surface:#141F1A; --ink:#E4EDE8; --muted:#9AACA3; --line:#26352E;
+  --green:#3DB574; --on-green:#05130C; --green-soft:#12301F; --signal:#E9B444; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0D1512; --surface:#141F1A; --ink:#E4EDE8; --muted:#9AACA3; --line:#26352E;
+  --green:#3DB574; --on-green:#05130C; --green-soft:#12301F; --signal:#E9B444; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;text-wrap:balance;margin:0;letter-spacing:.005em}
+h2{font-size:clamp(2rem,4.2vw,2.9rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+.eyebrow{font:500 .78rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:1.08rem;color:var(--muted);max-width:62ch}
+section{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:760px}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:64px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.25rem;line-height:1}
+.brand small{display:block;font:500 .7rem/1.2 var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+.sign{width:34px;height:34px;flex:none;border-radius:4px;background:var(--green);display:grid;place-items:center}
+.sign svg{width:22px;height:22px}
+.nav{display:flex;gap:22px;margin-left:auto;font-size:.95rem}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+.top-phone{font:500 .95rem var(--mono);text-decoration:none;white-space:nowrap}
+@media (max-width:880px){.nav{display:none}.top-phone{margin-left:auto}}
+@media (max-width:420px){.top-phone{font-size:.82rem}.brand small{display:none}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:var(--r);font:600 1rem var(--body);text-decoration:none;border:1.5px solid var(--green);cursor:pointer}
+.btn-primary{background:var(--green);color:var(--on-green)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--green)}
+
+/* Hero */
+.hero{padding-block:clamp(40px,6vw,80px) clamp(48px,7vw,88px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.hero h1{font-size:clamp(2.7rem,6.4vw,4.6rem);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;padding-top:8px;border-top:1px solid var(--line);margin-top:6px}
+.facts div{display:grid;gap:2px;padding-top:14px}
+.facts b{font:700 1.6rem/1 var(--display)}
+.facts span{font-size:.88rem;color:var(--muted)}
+
+/* Register card */
+.register{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 18px 40px -28px rgba(16,32,26,.45);min-width:0}
+.register-head{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.register-head h3{font-size:1.2rem}
+.register ol{list-style:none;margin:0;padding:6px 20px 10px;counter-reset:d}
+.register li{counter-increment:d;display:grid;grid-template-columns:2.2em 1fr auto;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.93rem}
+.register li:last-child{border-bottom:0}
+.register li::before{content:counter(d,decimal-leading-zero);font:500 .78rem var(--mono);color:var(--muted)}
+.qty{font:500 .82rem var(--mono);color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.stamp{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;background:var(--green-soft);border-top:1px solid var(--line);border-radius:0 0 var(--r) var(--r);font:500 .78rem/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.stamp strong{color:var(--green)}
+@media (max-width:880px){.hero .wrap{grid-template-columns:1fr}}
+
+/* When */
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.when{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.when article{background:var(--surface);padding:24px;display:grid;gap:10px;align-content:start}
+.when h3{font-size:1.3rem}
+.when p{color:var(--muted);font-size:.95rem}
+.tag{justify-self:start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--green-soft);color:var(--green)}
+.tag.warn{background:transparent;color:var(--signal);border:1px solid var(--signal)}
+@media (max-width:880px){.when{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.when{grid-template-columns:1fr}}
+
+/* Packages */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.pack{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.pack.main{border:2px solid var(--green)}
+.pack-for{font-size:.92rem;color:var(--muted)}
+.price{font:800 2.5rem/1 var(--display);font-variant-numeric:tabular-nums}
+.price small{font:500 .9rem var(--body);color:var(--muted)}
+.pack ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.94rem}
+.pack li{display:grid;grid-template-columns:18px 1fr;gap:10px}
+.pack li::before{content:"";width:12px;height:12px;margin-top:6px;border:2px solid var(--green);border-radius:2px;background:linear-gradient(var(--green),var(--green)) center/6px 6px no-repeat}
+.pack .btn{margin-top:auto}
+.pack-badge{align-self:flex-start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--green);color:var(--on-green);padding:4px 9px;border-radius:3px}
+.note{margin-top:20px;font-size:.9rem;color:var(--muted)}
+@media (max-width:920px){.packs{grid-template-columns:1fr}}
+
+/* Price list */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:520px}
+th,td{text-align:left;padding:13px 18px;border-bottom:1px solid var(--line);vertical-align:baseline}
+th{font:500 .74rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+td.unit{color:var(--muted);white-space:nowrap}
+
+/* Steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s;border-top:2px solid var(--ink)}
+.steps li{counter-increment:s;padding:20px 18px 0 0;display:grid;gap:8px;align-content:start;min-width:0}
+.steps li::before{content:"Крок " counter(s);font:500 .76rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--green)}
+.steps h3{font-size:1.2rem}
+.steps p{font-size:.93rem;color:var(--muted)}
+@media (max-width:920px){.steps{grid-template-columns:1fr;border-top:0;gap:0}.steps li{border-left:2px solid var(--ink);padding:0 0 22px 18px}}
+
+/* Cases */
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.case{border-top:2px solid var(--green);padding-top:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.case dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.93rem}
+.case dt{font:500 .76rem/1.9 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.case dd{margin:0}
+.case-meta{font:500 .8rem var(--mono);color:var(--muted)}
+@media (max-width:880px){.cases{grid-template-columns:1fr}}
+
+/* Split: responsibility + FAQ */
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,64px)}
+.split > *{min-width:0}
+.resp{display:grid;gap:16px;align-content:start}
+.resp-box{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:22px;display:grid;gap:12px}
+.resp-box div{display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:.94rem}
+.resp-box b{font:500 .78rem/1.7 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;font-weight:600;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 1.6rem var(--mono);color:var(--green)}
+details[open] summary::after{content:"−"}
+details p{padding:0 0 18px;color:var(--muted);max-width:62ch}
+@media (max-width:880px){.split{grid-template-columns:1fr}}
+
+/* Contact */
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,64px)}
+.contact .wrap > *{min-width:0}
+.contact-info{display:grid;gap:18px;align-content:start}
+.phone-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.phone-big{font:700 clamp(1.7rem,3.6vw,2.3rem)/1 var(--display);user-select:all;font-variant-numeric:tabular-nums}
+.copy{font:500 .8rem var(--mono);padding:7px 11px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink);cursor:pointer}
+.need{border-left:2px solid var(--green);padding-left:16px;display:grid;gap:6px;font-size:.94rem}
+.need ul{margin:0;padding-left:18px;color:var(--muted)}
+form{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+label{font-size:.88rem;font-weight:500}
+input,select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--green);outline-offset:0;border-color:var(--green)}
+.err{font-size:.82rem;color:var(--signal);min-height:1em}
+.form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.form-foot p{font-size:.84rem;color:var(--muted);flex:1 1 220px}
+.form-status{grid-column:1/-1;padding:14px 16px;border-radius:4px;background:var(--green-soft);font-size:.95rem}
+@media (max-width:880px){.contact .wrap{grid-template-columns:1fr}}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="На початок сторінки">
+      <span class="sign" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h8v16H4z" stroke="var(--on-green)" stroke-width="2"/><path d="M13 12h7m-3-3 3 3-3 3" stroke="var(--on-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span>Охорона праці<small>Олександр Голій · Луцьк</small></span>
+    </a>
+    <nav class="nav" aria-label="Розділи">
+      <a href="#packs">Пакети</a><a href="#prices">Ціни</a><a href="#how">Як працюємо</a><a href="#cases">Кейси</a><a href="#faq">Питання</a>
+    </nav>
+    <a class="top-phone" href="tel:+380995291401">+38 099 529 14 01</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Охорона праці · пожежна безпека · цивільний захист</p>
+        <h1>Комплект документів з охорони праці <em>під ключ</em></h1>
+        <p class="lead">Накази, інструкції, Положення про СУОП, програми стажування, норми видачі ЗІЗ і план евакуації. Під ваші види робіт і штат. Договір і акти підписуємо через Вчасно, тож працюємо з підприємствами з будь-якої області.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Отримати розрахунок</a>
+          <a class="btn btn-ghost" href="#packs">Пакети і ціни</a>
+        </div>
+        <div class="facts">
+          <div><b>від 4 700 грн</b><span>комплект для ФОП і малого бізнесу</span></div>
+          <div><b>КЕП</b><span>договір і акт онлайн, без поїздок</span></div>
+          <div><b>Оплата після акта</b><span>безготівково, без ПДВ</span></div>
+        </div>
+      </div>
+
+      <aside class="register" aria-label="Приклад складу комплекту">
+        <div class="register-head">
+          <h3>Опис комплекту</h3>
+          <span class="eyebrow">Цех металообробки</span>
+        </div>
+        <ol>
+          <li><span>Пакет наказів: стажування, ЗІЗ, вогневі роботи, обов'язки</span><span class="qty">1 пакет</span></li>
+          <li><span>Інструкції з охорони праці</span><span class="qty">15 шт.</span></li>
+          <li><span>Інструкції з пожежної безпеки</span><span class="qty">4 шт.</span></li>
+          <li><span>Інструкція щодо дій у НС під час воєнного стану</span><span class="qty">1 шт.</span></li>
+          <li><span>Положення про СУОП і наказ про введення</span><span class="qty">1 шт.</span></li>
+          <li><span>Положення про роботу підрядних організацій</span><span class="qty">1 шт.</span></li>
+          <li><span>Програми стажування: фарбування, зварювання, монтаж</span><span class="qty">5 шт.</span></li>
+          <li><span>Норми видачі спецодягу та ЗІЗ</span><span class="qty">1 шт.</span></li>
+          <li><span>План евакуації при пожежі</span><span class="qty">1 шт.</span></li>
+        </ol>
+        <div class="stamp"><span>Реальний склад робіт</span><strong>Здано за 13 днів</strong></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="when-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Коли звертаються</p>
+        <h2 id="when-h">Документи потрібні раніше, ніж про них питає інспектор</h2>
+      </div>
+      <div class="when">
+        <article><span class="tag">Старт</span><h3>Найняли перших працівників</h3><p>Підготуємо мінімальний обов'язковий набір і пояснимо, як вести журнали та проводити інструктажі.</p></article>
+        <article><span class="tag">Перевірка</span><h3>Очікуєте перевірку</h3><p>Зберемо або оновимо комплект, щоб документи відповідали реальним видам робіт і штатному розпису.</p></article>
+        <article><span class="tag warn">Підвищена небезпека</span><h3>Зварювання, фарбування, монтаж</h3><p>Інструкції, програми стажування, наказ про місця вогневих робіт і консультація щодо нарядів-допусків.</p></article>
+        <article><span class="tag">Склад</span><h3>Стелажі і вантажні роботи</h3><p>Карта небезпек і оцінка професійних ризиків, супровід первинного технічного огляду стелажів.</p></article>
+        <article><span class="tag">Підрядники</span><h3>На об'єкті працюють сторонні бригади</h3><p>Положення про взаємодію з підрядними організаціями і безпечне виконання їхніх робіт.</p></article>
+        <article><span class="tag">Воєнний стан</span><h3>Немає інструкції на випадок тривоги</h3><p>Інструкція щодо дій працівників у надзвичайних ситуаціях під час воєнного стану.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="packs" aria-labelledby="packs-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Пакети</p>
+        <h2 id="packs-h">Три типові комплекти</h2>
+        <p class="lead">Склад кожного пакета взятий з реальних замовлень. Точну суму називаємо після того, як побачимо штатний розпис і перелік робіт.</p>
+      </div>
+      <div class="packs">
+        <article class="pack">
+          <h3>Старт</h3>
+          <p class="pack-for">ФОП і малий бізнес до 10 працівників, без робіт підвищеної небезпеки</p>
+          <p class="price">4 700 <small>грн</small></p>
+          <ul>
+            <li>Пакет базових наказів з охорони праці та пожежної безпеки</li>
+            <li>До 5 інструкцій з охорони праці і пожежної безпеки</li>
+            <li>Інструкція щодо дій у НС під час воєнного стану</li>
+            <li>Положення про СУОП і наказ про введення</li>
+            <li>Консультація: журнали, інструктажі, оформлення новоприйнятих</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact" data-pack="Старт">Замовити «Старт»</a>
+        </article>
+        <article class="pack main">
+          <span class="pack-badge">Склад, торгівля, сервіс</span>
+          <h3>Базовий</h3>
+          <p class="pack-for">Підприємства до 50 працівників: склади, магазини, офіси з технікою</p>
+          <p class="price">7 700 <small>грн</small></p>
+          <ul>
+            <li>Пакет наказів: стажування, навчання, ЗІЗ, обов'язки</li>
+            <li>До 14 інструкцій з охорони праці, пожежної безпеки і дій у НС</li>
+            <li>Положення про СУОП</li>
+            <li>Карта ідентифікації небезпек та оцінки професійних ризиків</li>
+            <li>2 програми стажування на робочому місці</li>
+            <li>Норми видачі спецодягу та ЗІЗ</li>
+            <li>План евакуації при пожежі</li>
+            <li>Навчання персоналу з охорони праці</li>
+          </ul>
+          <a class="btn btn-primary" href="#contact" data-pack="Базовий">Замовити «Базовий»</a>
+        </article>
+        <article class="pack">
+          <h3>Виробництво</h3>
+          <p class="pack-for">Цехи з роботами підвищеної небезпеки: зварювання, фарбування, монтаж, електророботи</p>
+          <p class="price"><small>від</small> 11 200 <small>грн</small></p>
+          <ul>
+            <li>Пакет наказів, зокрема про постійні місця вогневих робіт</li>
+            <li>До 20 інструкцій з охорони праці, пожежної безпеки і дій у НС</li>
+            <li>Положення про СУОП</li>
+            <li>Положення про безпечну роботу підрядних організацій</li>
+            <li>Програми стажування під кожен вид небезпечних робіт</li>
+            <li>Норми видачі спецодягу та ЗІЗ</li>
+            <li>План евакуації при пожежі</li>
+            <li>Консультації: наряди-допуски, журнали, картки видачі ЗІЗ</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact" data-pack="Виробництво">Замовити «Виробництво»</a>
+        </article>
+      </div>
+      <p class="note">Виконавець — ФОП на єдиному податку, тому ціни без ПДВ.</p>
+    </div>
+  </section>
+
+  <section id="prices" class="band" aria-labelledby="prices-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Окремі документи</p>
+        <h2 id="prices-h">Потрібно доробити тільки частину?</h2>
+        <p class="lead">Замовляйте окремі документи, якщо комплект уже є, але його треба доповнити під нові посади чи обладнання.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Документ або послуга</th><th>Одиниця</th><th style="text-align:right">Ціна, грн</th></tr></thead>
+          <tbody>
+            <tr><td>Пакет наказів з організації охорони праці та пожежної безпеки</td><td class="unit">пакет</td><td class="num">від 700</td></tr>
+            <tr><td>Інструкція з охорони праці, пожежної безпеки або дій у НС</td><td class="unit">1 шт.</td><td class="num">від 400</td></tr>
+            <tr><td>Положення про систему управління охороною праці (СУОП) з наказом</td><td class="unit">1 шт.</td><td class="num">від 700</td></tr>
+            <tr><td>Положення про роботу підрядних організацій з наказом</td><td class="unit">1 шт.</td><td class="num">від 700</td></tr>
+            <tr><td>Карта ідентифікації небезпек та оцінки професійних ризиків</td><td class="unit">1 шт.</td><td class="num">від 400</td></tr>
+            <tr><td>Програма стажування на робочому місці</td><td class="unit">1 шт.</td><td class="num">від 400</td></tr>
+            <tr><td>Норми безкоштовної видачі спецодягу та ЗІЗ</td><td class="unit">1 шт.</td><td class="num">від 400</td></tr>
+            <tr><td>План евакуації при пожежі</td><td class="unit">1 шт.</td><td class="num">від 400</td></tr>
+            <tr><td>Консультації: журнали, інструктажі, наряди-допуски, картки ЗІЗ</td><td class="unit">послуга</td><td class="num">від 700</td></tr>
+            <tr><td>Супровід первинного технічного огляду стелажів</td><td class="unit">послуга</td><td class="num">від 400</td></tr>
+            <tr><td>Навчання персоналу з охорони праці</td><td class="unit">послуга</td><td class="num">від 1 500</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Як працюємо</p>
+        <h2 id="how-h">Від заявки до акта, без жодної поїздки</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Заявка</h3><p>Розповідаєте про підприємство: кількість працівників, види робіт, обладнання.</p></li>
+        <li><h3>Вихідні дані</h3><p>Надсилаєте штатний розпис, перелік обладнання і план приміщень для плану евакуації.</p></li>
+        <li><h3>Договір</h3><p>Фіксуємо склад робіт і ціну в рахунку, підписуємо договір КЕП через Вчасно.</p></li>
+        <li><h3>Розробка</h3><p>Готуємо документи під ваші посади і роботи. Консультуємо щодо журналів та інструктажів.</p></li>
+        <li><h3>Акт і оплата</h3><p>Передаємо комплект, підписуємо акт, ви оплачуєте протягом 5 банківських днів.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="cases" class="band" aria-labelledby="cases-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Кейси</p>
+        <h2 id="cases-h">Що вже зроблено</h2>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <p class="case-meta">Виробництво · 2026</p>
+          <h3>Порошкове фарбування і металоконструкції</h3>
+          <dl>
+            <dt>Задача</dt><dd>Повний комплект для цеху з вогневими і монтажними роботами та залученими підрядниками</dd>
+            <dt>Зроблено</dt><dd>20 інструкцій, 5 програм стажування, СУОП, положення для підрядників, норми ЗІЗ, план евакуації</dd>
+            <dt>Строк</dt><dd>13 днів від договору до акта</dd>
+          </dl>
+        </article>
+        <article class="case">
+          <p class="case-meta">Склад · 2026</p>
+          <h3>Склад зі стелажним обладнанням</h3>
+          <dl>
+            <dt>Задача</dt><dd>Документи для складу і перший технічний огляд стелажів</dd>
+            <dt>Зроблено</dt><dd>14 інструкцій, карта небезпек і ризиків, СУОП, програми стажування, навчання персоналу</dd>
+            <dt>Формат</dt><dd>Договір і акт підписані КЕП через Вчасно</dd>
+          </dl>
+        </article>
+        <article class="case">
+          <p class="case-meta">Львівська обл. · 2026</p>
+          <h3>Підприємство з іншої області</h3>
+          <dl>
+            <dt>Задача</dt><dd>Документи з охорони праці без виїзду фахівця на місце</dd>
+            <dt>Зроблено</dt><dd>Вся робота дистанційно: вихідні дані, документи і консультації онлайн</dd>
+            <dt>Договір</dt><dd>Підписаний обома сторонами за 25 хвилин</dd>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-h">
+    <div class="wrap split">
+      <div class="resp">
+        <p class="eyebrow">Чесно про відповідальність</p>
+        <h2 id="faq-h">Хто за що відповідає</h2>
+        <p class="lead">Ми розробляємо документи на основі ваших даних. Впроваджуєте їх ви, і ми пояснюємо, як саме.</p>
+        <div class="resp-box">
+          <div><b>Ми</b><span>Документи під ваші посади, обладнання і види робіт. Консультації щодо журналів, інструктажів і оформлення нових працівників.</span></div>
+          <div><b>Ви</b><span>Достовірні вихідні дані, підписання наказів, інструктажі та ведення журналів на підприємстві.</span></div>
+        </div>
+      </div>
+      <div>
+        <details><summary>Ви працюєте тільки з Луцьком і Волинню?</summary><p>Ні. Договір, рахунок і акт підписуємо КЕП через Вчасно, а вихідні дані отримуємо поштою чи в месенджері. Тому працюємо з підприємствами з будь-якої області.</p></details>
+        <details><summary>Що потрібно від нас для старту?</summary><p>Штатний розпис, перелік обладнання і види робіт. Для плану евакуації потрібен план приміщень. Якщо дані затримуються, строк зсувається на той самий час.</p></details>
+        <details><summary>Скільки часу займає комплект?</summary><p>Залежить від кількості посад і видів робіт. Комплект для цеху з 20 інструкціями ми здали за 13 днів від договору до акта.</p></details>
+        <details><summary>Коли і як платити?</summary><p>Після підписання акта, протягом 5 банківських днів, безготівково на рахунок ФОП. Без ПДВ.</p></details>
+        <details><summary>Ви зберігаєте конфіденційність?</summary><p>Так, це прописано в договорі. Ваші дані не передаємо третім особам.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="band contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact-info">
+        <p class="eyebrow">Розрахунок вартості</p>
+        <h2 id="contact-h">Розкажіть про підприємство, і ми назвемо точну суму</h2>
+        <div class="phone-row">
+          <span class="phone-big" id="phone">+38 099 529 14 01</span>
+          <button class="copy" type="button" id="copy-phone">Копіювати</button>
+        </div>
+        <p class="lead">Олександр Голій, фахівець з охорони праці. Дзвінок, Viber або Telegram за цим номером.</p>
+        <div class="need">
+          <strong>Щоб розрахунок був точним, підготуйте:</strong>
+          <ul><li>кількість працівників і посади</li><li>види робіт і обладнання</li><li>які документи вже є</li></ul>
+        </div>
+      </div>
+
+      <form id="lead" novalidate>
+        <div class="field"><label for="f-name">Ваше ім'я</label><input id="f-name" name="name" autocomplete="name" required><span class="err" data-for="f-name"></span></div>
+        <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+380" required><span class="err" data-for="f-phone"></span></div>
+        <div class="field"><label for="f-company">Компанія або ФОП</label><input id="f-company" name="company" autocomplete="organization"></div>
+        <div class="field"><label for="f-staff">Кількість працівників</label>
+          <select id="f-staff" name="staff"><option>до 10</option><option>11–50</option><option>51–150</option><option>понад 150</option></select></div>
+        <div class="field full"><label for="f-pack">Що цікавить</label>
+          <select id="f-pack" name="pack"><option>Ще не знаю, допоможіть обрати</option><option>Старт</option><option>Базовий</option><option>Виробництво</option><option>Окремі документи</option></select></div>
+        <div class="field full"><label for="f-msg">Види робіт і обладнання</label><textarea id="f-msg" name="message" placeholder="Наприклад: склад, 2 навантажувачі, стелажі, 15 працівників"></textarea></div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit">Отримати розрахунок</button>
+          <p>Передзвонимо в робочий час і уточнимо деталі. Дані використовуємо тільки для розрахунку.</p>
+        </div>
+        <div class="form-status" id="form-status" role="status" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>ФОП Голій Олександр Олександрович · Луцьк, Волинська обл.</span>
+    <span>Охорона праці · пожежна безпека · цивільний захист</span>
+  </div>
+</footer>
+
+<script>
+// Адреса прийому заявок (вебхук Telegram-бота, Google Apps Script, CRM). Поки порожня — форма підказує подзвонити.
+const LEAD_ENDPOINT = "";
+
+document.querySelectorAll("[data-pack]").forEach(a => a.addEventListener("click", () => {
+  document.getElementById("f-pack").value = a.dataset.pack;
+}));
+
+const copyBtn = document.getElementById("copy-phone");
+copyBtn.addEventListener("click", () => {
+  const text = "+380995291401";
+  const done = () => { copyBtn.textContent = "Скопійовано"; setTimeout(() => copyBtn.textContent = "Копіювати", 1800); };
+  const fallback = () => {
+    const r = document.createRange(); r.selectNodeContents(document.getElementById("phone"));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    copyBtn.textContent = "Виділено, натисніть Ctrl+C";
+  };
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+});
+
+const form = document.getElementById("lead");
+const status = document.getElementById("form-status");
+const setErr = (id, msg) => { form.querySelector(`[data-for="${id}"]`).textContent = msg; };
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = form.name.value.trim();
+  const phone = form.phone.value.replace(/[^\d+]/g, "");
+  let ok = true;
+  setErr("f-name", ""); setErr("f-phone", "");
+  if (!name) { setErr("f-name", "Вкажіть, як до вас звертатися"); ok = false; }
+  if (phone.replace(/\D/g, "").length < 10) { setErr("f-phone", "Вкажіть номер у форматі +380XXXXXXXXX"); ok = false; }
+  if (!ok) return;
+
+  const data = Object.fromEntries(new FormData(form));
+  status.hidden = false;
+  if (!LEAD_ENDPOINT) {
+    status.textContent = "Онлайн-заявки поки не приймаються. Зателефонуйте або напишіть у Viber чи Telegram: +38 099 529 14 01.";
+    return;
+  }
+  status.textContent = "Надсилаємо…";
+  try {
+    const res = await fetch(LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+    if (!res.ok) throw new Error(res.status);
+    status.textContent = "Заявку отримано. Передзвонимо в робочий час.";
+    form.reset();
+  } catch (err) {
+    status.textContent = "Не вдалося надіслати заявку. Зателефонуйте: +38 099 529 14 01.";
+  }
+});
+</script>
